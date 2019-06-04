@@ -1,0 +1,94 @@
+------------------------------------------		TABEL DATABASE		------------------------------------------------------------
+GURU MAPEL		SISWA			JURUSAN		|Role Id	: 1 = admin
+nik_guru			nik_siswa			kode_jurusan	|	  2 = guru
+nama			nama			nama		|	  
+id_kelas			id_kelas					|	  3 = siswa
+kode_mapel		kode_jurusan				|
+			role_id					|
+								|
+KELAS			MAPEL			ABSEN		|
+id_kelas			kode_mapel		id_absen
+nama			nama			nama
+kode_jurusan		
+kode_mapel		
+
+ABSENSI			SEMESTER		
+nik_siswa			id_semester	
+nama
+id_absen
+keterangan
+tgl_absen
+id_kelas
+kode_mapel
+nik_guru
+==============================================================================================
+
+-------------------------------------- MENU ----------------------------------
+Admin :
+	Beranda
+	IPA
+	IPS					-----------------------------Keterangan----------------------------
+	Data Siswa				|  Absensi =  guru mengkonfirmasi absen siswa	|
+	Data Guru					|  Absen = Siswa melakukan absen		|
+	Absensi (Konfirmasi Absen)			|  History Absen = 				|
+	Absen (Siswa absen)				|  					|
+	History Absen				|					|
+						--------------------------------------------------------------------------
+Guru :
+	Beranda
+	Absensi (Konfirmasi Absen)
+	Jurusan
+	History Absensi(Mungkin)
+
+Siswa :
+	Beranda
+	Absen
+	
+================================================================================================
+							ALUR MENU JURUSAN									
+Jurusan	
+IPA		--->		NO|KELAS|PELAJARAN|GURU(mungkin)		--->		NO|NIS|NAMA|PELAJARAN|TGL|ABSEN|CAT|ACTION|JAM	
+IPS
+
+============================================================================================
+
+
+ALUR MENU ABSEN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
