@@ -60,7 +60,7 @@ class Guru extends CI_Controller
             $this->load->view('template/footer.php');
             $this->load->view('template/footer.php');
         } else {
-            $this->Action_guru->inputGuru();
+            $guru  = $this->Action_guru->inputGuru();
         }
     }
 }

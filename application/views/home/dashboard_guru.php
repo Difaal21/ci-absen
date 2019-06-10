@@ -19,12 +19,12 @@
                             </h5>
                         </div>
                         <div class="col-sm">
-                            <h5 class="font-weight-bold text-dark">Pelajaran : <?= $info['pelajaran'];  ?> </h5>
+                            <h5 class="font-weight-bold text-dark">Mengajar : <?= $info['pelajaran'];  ?> </h5>
                         </div>
                     </div>
                     <div class="row col-md-8 mx-auto">
                         <div class="col-sm">
-                            <h5 class="font-weight-bold text-dark ">Alamat : <?= $info['alamat_guru'];  ?> </h5>
+                            <h5 class="font-weight-bold text-dark ">Alamat Rumah : <?= $info['alamat_guru'];  ?> </h5>
                         </div>
                         <!-- <div class="col-sm">
                             <h4 class="font-weight-bold text-dark mb-3 mt-3">Kelas : <?= $info['jurusan'];  ?> </h4>

@@ -16,10 +16,13 @@
                                     <p class="">Pengajar : <?= $i['guru_name'] ?> </p>
                                 </p>
                                 <h5>
-                                    <a class="badge badge-primary fas fa-school" href="">Hadir</a>
+                                    <a class="badge badge-primary fas fa-school" href="<?= $i['absen_url'] ?>"> Hadir</a>
                                 </h5>
                                 <h5>
-                                    <a href="" class="badge badge-warning fas fa-comments">Tidak Masuk</a>
+                                    <a href="<?= base_url() ?>absen/keterangan_absen/<?= $i['pelajaran'] ?>" class=" badge badge-warning fas fa-comments"> Tidak Masuk</a>
+                                </h5>
+                                <h5>
+                                    <a href="<?= $i['url'] ?>" class=" badge badge-danger fas fa-clipboard-list"> Lihat Absen</a>
                                 </h5>
                             </div>
                         </div>
@@ -28,50 +31,5 @@
             </div>
         </div>
     </div>
+    <?= $this->session->flashdata('message'); ?>
 </div>
-
-
-
-
-<!-- <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Pelajaran</th>
-                    <th>Tanggal</th>
-                    <th>Jam</th>
-                    <th>Absen</th>
-                    <th>Catatan</th>
-                </tr>
-            </thead>
-            <?php $n = 1; ?>
-            <!--  -->
-<!-- <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <a class="badge badge-primary fas fa-school" href="#">
-                    Hadir
-                </a>
-                <a class="badge badge-warning fas fa-syringe" href="">
-                    Sakit
-                </a>
-                <a class="badge badge-success fas fa-comments" href="">
-                    Izin
-                </a>
-                <a class="badge badge-danger fas fa-skull" href="">
-                    Alpa
-                </a>
-            </td>
-            <td></td>
-        </tr>
-    </tbody> -->
-<!-- <?php $n++; ?>
-    </table> -->
-</div> -->

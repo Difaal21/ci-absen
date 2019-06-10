@@ -50,7 +50,7 @@ class Siswa extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tambah Data Siswa';
             $data['user']    = $this->Action_model->queryAkun();
-            $data['siswa'] = $this->Action_siswa->dataSiswa();
+            $data['siswa']   = $this->Action_siswa->dataSiswa();
             $this->load->view('template/header.php', $data);
             $this->load->view('template/sidebar.php', $data);
             $this->load->view('template/topbar.php', $data);

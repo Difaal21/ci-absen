@@ -107,7 +107,7 @@ class Action_siswa extends CI_model
 		$user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
 		$querySiswa =
 			"
-			SELECT ts.siswa_name, tk.kelas, tj.jurusan, ts.alamat, ts.image, u.username
+			SELECT ts.siswa_name, tk.kelas, tj.jurusan, ts.alamat, ts.image, u.username, tk.kelas_id
 			FROM sub_student ss 
             JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
             JOIN user u ON u.id = ts.siswa_id

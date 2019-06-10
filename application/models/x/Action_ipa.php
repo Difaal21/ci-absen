@@ -1,62 +1,47 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-#KELAS X (10)
+# KELAS X (10) IPA
 class Action_ipa extends CI_model
 {
+    /* ==================== Queri Menampilkan Kelas X Jurusan IPA MURID ========================== */
     public function biologi()
     {
         $querySiswa =
             "
-            SELECT u.username, ts.siswa_name, tk.kelas, tj.jurusan, tp.pelajaran
-            FROM tabel_siswa ts
-            JOIN user u ON u.id = ts.siswa_id
-            JOIN sub_student ss ON ss.student_id = ts.siswa_id
-            JOIN tabel_kelas tk ON tk.kelas_id = ss.kelas_id
-            JOIN tabel_jurusan tj ON tj.jurusan_id = ss.jurusan_id
-            JOIN subjects_group sg ON sg.jurusan_id = tj.jurusan_id
-            JOIN tabel_pelajaran tp ON tp.pelajaran_id = sg.pelajaran_id
-            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 1  
+            SELECT * FROM absen_siswa asis 
+            JOIN class_subjects cs ON cs.subjects_id = asis.subjects_id
+            JOIN tabel_pelajaran tp ON tp.pelajaran_id = asis.pelajaran_id
+            JOIN tabel_kelas tk ON tk.kelas_id = asis.kelas_id 
+            JOIN tabel_absen ta ON ta.absen_id = asis.absen_id
+            JOIN subjects_group sg ON sg.pelajaran_id = tp.pelajaran_id
+            JOIN tabel_jurusan tj ON tj.jurusan_id = sg.jurusan_id
+            JOIN user u ON u.username = asis.username
+            JOIN sub_student ss ON ss.student_id = u.id
+            JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
+            JOIN tabel_konfirmasi tkon ON tkon.konfirmasi_id = asis.konfirmasi_id
+            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 1 
             ";
         $siswa = $this->db->query($querySiswa)->result_array();
         return $siswa;
-    }
-
-    public function absenBiologi()
-    {
-        $sql =
-            "
-            SELECT tg.guru_name, tk.kelas ,tp.pelajaran, su.url, tj.jurusan, ts.siswa_name, su.url
-            FROM class_subjects cs
-            JOIN tabel_guru tg ON tg.guru_id = cs.guru_id
-            JOIN sub_teacher st ON st.teacher_id = tg.guru_id
-            JOIN subjects_class sc ON sc.class_id = st.class_id
-            JOIN subjects_group sg ON sg.group_id = sc.group_id
-            JOIN subjects_url su ON su.url_id = sc.class_id
-            JOIN tabel_pelajaran tp ON tp.pelajaran_id = sg.pelajaran_id
-            JOIN tabel_jurusan tj ON tj.jurusan_id = sg.jurusan_id
-            JOIN tabel_kelas tk ON tk.kelas_id = sc.kelas_id
-            JOIN group_class gc ON gc.gc_id = sc.gc_id
-            JOIN sub_student ss ON ss.gc_id = gc.gc_id
-            JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
-            ";
-        $absenBiologi = $this->db->query($sql)->result_array();
-        return $absenBiologi;
     }
 
     public function fisika()
     {
         $querySiswa =
             "
-            SELECT u.username, ts.siswa_name, tk.kelas, tj.jurusan, tp.pelajaran
-            FROM tabel_siswa ts
-            JOIN user u ON u.id = ts.siswa_id
-            JOIN sub_student ss ON ss.student_id = ts.siswa_id
-            JOIN tabel_kelas tk ON tk.kelas_id = ss.kelas_id
-            JOIN tabel_jurusan tj ON tj.jurusan_id = ss.jurusan_id
-            JOIN subjects_group sg ON sg.jurusan_id = tj.jurusan_id
-            JOIN tabel_pelajaran tp ON tp.pelajaran_id = sg.pelajaran_id
-            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 2  
+            SELECT * FROM absen_siswa asis 
+            JOIN class_subjects cs ON cs.subjects_id = asis.subjects_id
+            JOIN tabel_pelajaran tp ON tp.pelajaran_id = asis.pelajaran_id
+            JOIN tabel_kelas tk ON tk.kelas_id = asis.kelas_id 
+            JOIN tabel_absen ta ON ta.absen_id = asis.absen_id
+            JOIN subjects_group sg ON sg.pelajaran_id = tp.pelajaran_id
+            JOIN tabel_jurusan tj ON tj.jurusan_id = sg.jurusan_id
+            JOIN user u ON u.username = asis.username
+            JOIN sub_student ss ON ss.student_id = u.id
+            JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
+            JOIN tabel_konfirmasi tkon ON tkon.konfirmasi_id = asis.konfirmasi_id
+            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 2
             ";
         $siswa = $this->db->query($querySiswa)->result_array();
         return $siswa;
@@ -66,17 +51,113 @@ class Action_ipa extends CI_model
     {
         $querySiswa =
             "
-            SELECT u.username, ts.siswa_name, tk.kelas, tj.jurusan, tp.pelajaran
-            FROM tabel_siswa ts
-            JOIN user u ON u.id = ts.siswa_id
-            JOIN sub_student ss ON ss.student_id = ts.siswa_id
-            JOIN tabel_kelas tk ON tk.kelas_id = ss.kelas_id
-            JOIN tabel_jurusan tj ON tj.jurusan_id = ss.jurusan_id
-            JOIN subjects_group sg ON sg.jurusan_id = tj.jurusan_id
-            JOIN tabel_pelajaran tp ON tp.pelajaran_id = sg.pelajaran_id
-            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 3
+            SELECT * FROM absen_siswa asis 
+            JOIN class_subjects cs ON cs.subjects_id = asis.subjects_id
+            JOIN tabel_pelajaran tp ON tp.pelajaran_id = asis.pelajaran_id
+            JOIN tabel_kelas tk ON tk.kelas_id = asis.kelas_id 
+            JOIN tabel_absen ta ON ta.absen_id = asis.absen_id
+            JOIN subjects_group sg ON sg.pelajaran_id = tp.pelajaran_id
+            JOIN tabel_jurusan tj ON tj.jurusan_id = sg.jurusan_id
+            JOIN user u ON u.username = asis.username
+            JOIN sub_student ss ON ss.student_id = u.id
+            JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
+            JOIN tabel_konfirmasi tkon ON tkon.konfirmasi_id = asis.konfirmasi_id
+            WHERE tk.kelas_id = 1 AND tj.jurusan_id = 1 AND tp.pelajaran_id = 1 
             ";
         $siswa = $this->db->query($querySiswa)->result_array();
         return $siswa;
     }
+
+    /* ====================== Input Data Absen Yang Hadir==================================== */
+
+    public function absenBiologi()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $kelas = 1;
+        $pelajaran = 1;
+        $data =
+            [
+                'username'          => $user['username'],
+                'pelajaran_id'      => $pelajaran,
+                'kelas_id'          => $kelas,
+                'subjects_id'       => $kelas + ($pelajaran * 3),
+                'tanggal'           => date('d F Y'),
+                'jam'               => date('H:i:s'),
+                'absen_id'          => 1, //Hadir
+                'keterangan'        => "-",
+                'konfirmasi_id'     => 3,
+            ];
+        // var_dump($data);
+        // die;
+        $db = $this->db->insert(' absen_siswa ', $data);
+        return $db;
+    }
+
+    public function absenFisika()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $kelas = 1;
+        $pelajaran = 2;
+        $data =
+            [
+                'username'          => $user['username'],
+                'pelajaran_id'      => $pelajaran,
+                'kelas_id'          => $kelas,
+                'subjects_id'       => $kelas + ($pelajaran * 3),
+                'tanggal'           => date('d F Y'),
+                'jam'               => date('H:i:s'),
+                'absen_id'          => 1, //Hadir
+                'keterangan'        => "-",
+                'konfirmasi_id'     => 3,
+            ];
+        $db = $this->db->insert(' absen_siswa ', $data);
+        return $db;
+    }
+
+    public function absenKimia()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $kelas = 1;
+        $pelajaran = 3;
+        $data =
+            [
+                'username'          => $user['username'],
+                'pelajaran_id'      => $pelajaran,
+                'kelas_id'          => $kelas,
+                'subjects_id'       => $kelas + ($pelajaran * 3),
+                'tanggal'           => date('d F Y'),
+                'jam'               => date('H:i:s'),
+                'absen_id'          => 1, //Hadir
+                'keterangan'        => "-",
+                'konfirmasi_id'     => 3,
+            ];
+        $db = $this->db->insert(' absen_siswa ', $data);
+        return $db;
+    }
+
+    /* ============= Kondisi Agar Siswa Tidak Dapat Login 2 kali dalam sehari ============================ */
+    public function dateLogicBiologi()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $date = date('d F Y');
+        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id = '4'");
+        return $query;
+    }
+
+    public function dateLogicFisika()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $date = date('d F Y');
+        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id='7'");
+        return $query;
+    }
+
+    public function dateLogicKimia()
+    {
+        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $date = date('d F Y');
+        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id='10' ");
+        return $query;
+    }
+    /*============================================================================================*/
 }

@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Action_guru extends CI_model
 {
+	/* ==================== Proses tambah guru ===================================*/
 	public function inputGuru()
 	{
 		$user    =
@@ -14,7 +15,7 @@ class Action_guru extends CI_model
 
 		$dataGuru =
 			[
-				'guru_name'         		   	=> $this->input->post('name', true),
+				'guru_name'         	=> $this->input->post('name', true),
 				'image_guru'         	=> 'default.jpg',
 				'date_created_guru'    	=> time(),
 				'alamat_guru'        	=> $this->input->post('alamat', true)
@@ -26,11 +27,17 @@ class Action_guru extends CI_model
 				'pelajaran_id'  => $this->input->post('pelajaran_id', true),
 				'subjects_id'	=> $this->input->post('kelas_id', true) + ($this->input->post('pelajaran_id', true) * 3)
 			];
-
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! Data Guru has been added.</div>');
-
-		$this->proses($user, $dataGuru, $subTeacher);
-		redirect('guru');
+		/* ---------------- Guru hanya bisa mengajar 1 pelajaran dan 1 kelas -----------------------*/
+		$exist = $subTeacher['subjects_id'];
+		$subjects = $this->db->query("SELECT * FROM sub_teacher st WHERE st.subjects_id = '$exist'");
+		if ($subjects->num_rows() > 0) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Subject and class who teach that Already exist </div>');
+			redirect('guru');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! Data Guru has been added.</div>');
+			$this->proses($user, $dataGuru, $subTeacher);
+			redirect('guru');
+		}
 	}
 
 	public function proses($user, $dataGuru, $subTeacher)
@@ -42,7 +49,6 @@ class Action_guru extends CI_model
 		$subTeacher['teacher_id']  = $id;
 		$this->tambahSubTeacher($subTeacher);
 		$this->db->trans_complete();
-
 		return $this->db->trans_status();
 	}
 
@@ -64,7 +70,7 @@ class Action_guru extends CI_model
 		$db = $this->db->insert('sub_teacher', $data);
 		return $db;
 	}
-
+	/*========================== query untuk mendapatkan data guru ======================================*/
 	public function dataGuru()
 	{
 		$queryGuru =
@@ -77,11 +83,10 @@ class Action_guru extends CI_model
 			JOIN tabel_kelas tk ON tk.kelas_id = st.kelas_id
 			ORDER BY tk.kelas_id ,tp.pelajaran_id ASC 
 			";
-		// 
 		$guru = $this->db->query($queryGuru)->result_array();
 		return $guru;
 	}
-
+	/*============================= query untuk menampilkan data guru di dashboard =======================*/
 	public function dashboard_guru()
 	{
 		$user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();

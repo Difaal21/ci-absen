@@ -9,7 +9,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kelas</th>
+                            <th>Jurusan</th>
                             <th>Pelajaran</th>
                         </tr>
                     </thead>
