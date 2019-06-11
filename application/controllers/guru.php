@@ -13,13 +13,26 @@ class Guru extends CI_Controller
     public function index()
     {
         /*--- Dashboard*/
-        $data['title']      = 'Data Guru';
-        $data['user']    = $this->Action_model->queryAkun();
-        $data['guru'] = $this->Action_guru->dataGuru();
+        $data['title']  = 'Data Guru';
+        $data['user']   = $this->Action_model->queryAkun();
+        $data['guru']   = $this->Action_guru->dataGuru();
         $this->load->view('template/header.php', $data);
         $this->load->view('template/sidebar.php', $data);
         $this->load->view('template/topbar.php', $data);
         $this->load->view('guru/data_guru.php', $data);
+        $this->load->view('template/footer.php');
+    }
+
+    public function dashboard()
+    {
+        $data['title']  = 'Beranda';
+        $data['user']   = $this->Action_model->queryAkun();
+        $data['menu']   = $this->db->get('user_menu')->result_array();
+        $data['info']   = $this->Action_guru->dashboard_guru();
+        $this->load->view('template/header.php', $data);
+        $this->load->view('template/sidebar.php', $data);
+        $this->load->view('template/topbar.php', $data);
+        $this->load->view('guru/dashboard.php', $data);
         $this->load->view('template/footer.php');
     }
 

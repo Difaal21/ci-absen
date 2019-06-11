@@ -4,55 +4,37 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
+            <?= $this->session->flashdata('message'); ?>
             <div class="table-responsive">
-                <!-- QUERY SISWA -->
-                <?php
-                $querySiswa =
-                    "
-					SELECT u.username,ts.name, tk.kelas, tp.pelajaran
-					FROM tabel_siswa ts
-					JOIN user u ON ts.siswa_id = u.id
-					JOIN tabel_kelas tk ON tk.kelas_id = ts.kelas_id 
-                    JOIN tabel_jurusan tj ON tj.jurusan_id = ts.jurusan_id
-                    JOIN tabel_pelajaran tp ON tp.pelajaran_id = tk.kelas_id
-                    WHERE tk.kelas_id = 3 AND tj.jurusan_id = 1
-					";
-                $siswa = $this->db->query($querySiswa)->result_array();
-                ?>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-
                             <th>No</th>
                             <th>Nis</th>
                             <th>Name</th>
-                            <th>Kelas</th>
-                            <th>Pelajaran</th>
                             <th>Tanggal</th>
+                            <th>Jam</th>
                             <th>Absen</th>
                             <th>Catatan</th>
-                            <th>Action</th>
+                            <th>Persetujuan</th>
                         </tr>
                     </thead>
                     <?php $n = 1; ?>
+                    <!-- SISWA Biologi KELAS 12 -->
                     <?php foreach ($siswa as $s) : ?>
                         <tbody>
                             <tr>
                                 <td class="float"><?= $n; ?></td>
                                 <td><?= $s['username']; ?></td>
-                                <td><?= $s['name']; ?></td>
-                                <td><?= $s['kelas']; ?></td>
-                                <td><?= $s['pelajaran']; ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $s['siswa_name']; ?></td>
+                                <td><?= $s['tanggal']; ?></td>
+                                <td><?= $s['jam']; ?></td>
                                 <td>
-                                    <a class="badge badge-warning" href="#">
-                                        Konfirmasi
-                                    </a>
-                                    <a class="badge badge-danger ml-1" href="">
-                                        Tolak
-                                    </a>
+                                    <h5><a class="<?= $s['style'] ?> text-white"><?= $s['absen_name']; ?></a></h5>
+                                </td>
+                                <td><?= $s['keterangan']; ?></td>
+                                <td>
+                                    <h5><a class="<?= $s['konfirmasi_style'] ?> <?= $s['icon'] ?> text-white"> <?= $s['konfirmasi_name']; ?></a></h5>
                                 </td>
                             </tr>
                         </tbody>

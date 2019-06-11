@@ -40,21 +40,6 @@
               </div>
             </div>
 
-            <!-- GROUP CLASS -->
-            <!-- <div class="form-group row">
-              <div class="col-sm">
-                <select class="custom-select" name="gc_id">
-                  <option selected>Kelas & Jurusan</option>
-                  <option value=1>1. X IPA</option>
-                  <option value=2>2. X IPS</option>
-                  <option value=3>3. XI IPA</option>
-                  <option value=4>4. XI IPS</option>
-                  <option value=5>5. XII IPA</option>
-                  <option value=6>6. XII IPS</option>
-                </select>
-              </div>
-            </div> -->
-
             <!-- Kelas -->
             <div class="form-group">
               <div class="row">
@@ -75,15 +60,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Jurusan -->
-            <!-- <div class="form-group">
-              <select class="custom-select" name="jurusan_id">
-                <option selected>Semester</option>
-                <option value="1">IPA</option>
-                <option value="2">IPS</option>
-              </select>
-            </div> -->
 
             <!-- Semester -->
             <!-- <div class="form-group">

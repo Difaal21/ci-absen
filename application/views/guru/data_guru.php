@@ -40,7 +40,7 @@
 									<td><?= $g['alamat_guru']; ?></td>
 									<td><?= date('d F Y', $g['date_created_guru']); ?></td>
 									<td>
-										<a class="badge badge-warning mr-1 fas fa-edit" href="">
+										<a class="badge badge-warning mr-1 fas fa-edit" href="<?= base_url() ?>admin/editDataGuru/<?= $g['guru_id'] ?>">
 											Edit
 										</a>
 										<a class="badge badge-danger far fa-times-circle ml-1" href="<?= base_url() ?>admin/deleteGuru/<?= $g['guru_id'] ?>">

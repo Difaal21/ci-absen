@@ -83,7 +83,6 @@ class Action_siswa extends CI_model
 			JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
 			JOIN tabel_kelas tk on tk.kelas_id = ss.kelas_id
 			JOIN tabel_jurusan tj ON tj.jurusan_id = ss.jurusan_id
-			ORDER BY tk.kelas_id ASC
 			";
 		$siswa = $this->db->query($querySiswa)->result_array();
 		return $siswa;

@@ -8,6 +8,7 @@ class Ipa extends CI_Controller
         parent::__construct();
         $this->load->model('x/Action_ipa');
         $this->load->model('Action_model');
+        $this->load->model('Action_absen');
     }
 
     /* ============================  Tampilan (View) Pelajaran =======================================*/
@@ -61,7 +62,7 @@ class Ipa extends CI_Controller
 
     public function absenBiologi()
     {
-        $query = $this->Action_ipa->dateLogicBiologi();
+        $query = $this->Action_absen->subjectsBiologi();
         if ($query->num_rows() == 1) {
             $this->message();
         } else {
@@ -73,7 +74,7 @@ class Ipa extends CI_Controller
 
     public function absenFisika()
     {
-        $query = $this->Action_ipa->dateLogicFisika();
+        $query = $this->Action_absen->subjectsFisika();
         if ($query->num_rows() == 1) {
             $this->message();
         } else {
@@ -85,7 +86,7 @@ class Ipa extends CI_Controller
 
     public function absenKimia()
     {
-        $query = $this->Action_ipa->dateLogicKimia();
+        $query = $this->Action_absen->subjectsKimia();
         if ($query->num_rows() == 1) {
             $this->message();
         } else {

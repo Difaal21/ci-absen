@@ -11,6 +11,7 @@ class Absen extends CI_Controller
 		$this->load->model('Action_siswa');
 		$this->load->library('form_validation');
 	}
+
 	/* ================ Tampilan Index Absen ==========================================*/
 	public function index()
 	{
@@ -57,16 +58,89 @@ class Absen extends CI_Controller
 		$update = $this->Action_absen->changeAction($data, $id);
 		redirect('absen/konfirmasi_absen');
 	}
-	/*========================= Absen tidak masuk (View Keterangan) ==================================== */
-	public function message()
+
+	/*================ Method subjects Agar Siswa tidak dapat menulis keterangan 2 kali ====================== */
+	/*-------------- Pesan Sudah Absen --------------------------------------*/
+	private function messageFailed()
 	{
 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><b>Maaf, Anda telah absen Hari ini !!! </b></div>');
 		redirect('absen');
 	}
+	/*-------------- Pesan Belum Absen --------------------------------------*/
+	private function messageSuccess()
+	{
+		$this->Action_absen->keterangan_absen();
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil absen</div>');
+		redirect('absen');
+	}
+	/* ---------------- Method keterangan --------------------------------------------------- */
+	/* ~~~~~~~~~~~~~ IPA ~~~~~~~~~~~~~~~~~~~~~ */
+	private function getSubjectBiologi()
+	{
+		$Biologi = $this->Action_absen->subjectsBiologi();
+		if ($Biologi->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	private function getSubjectFisika()
+	{
+		$Fisika = $this->Action_absen->subjectsFisika();
+		if ($Fisika->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	private function getSubjectKimia()
+	{
+		$Kimia = $this->Action_absen->subjectsKimia();
+		if ($Kimia->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	/* ~~~~~~~~~~~~~ IPS ~~~~~~~~~~~~~~~~~~~~~  */
+	private function getSubjectEkonomi()
+	{
+		$Ekonomi = $this->Action_absen->getSubjectEkonomi();
+		if ($Ekonomi->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	private function getSubjectGeografi()
+	{
+		$Geografi = $this->Action_absen->getSubjectGeografi();
+		if ($Geografi->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	private function getSubjectSosiologi()
+	{
+		$Sosiologi = $this->Action_absen->getSubjectSosiologi();
+		if ($Sosiologi->num_rows() == 1) {
+			$this->messageFailed();
+		} else {
+			$this->messageSuccess();
+		}
+	}
+
+	/*========================= Absen tidak masuk (View Keterangan) ==================================== */
 
 	public function keterangan_absen($pelajaran)
 	{
-		/*================================= Form Validation Keterangan Absen ================================ */
+		/*------------------------- Form Validation Keterangan Absen ------------------------- */
 		$this->form_validation->set_rules(
 			'absen_id',
 			'Absen',
@@ -104,40 +178,24 @@ class Absen extends CI_Controller
 			$this->load->view('absen/keterangan.php', $data);
 			$this->load->view('template/footer.php');
 		} else {
-			$xBiologi = $this->Action_absen->subjectsBiologi();
-			$xFisika = $this->Action_absen->subjectsFisika();
-			$xKimia = $this->Action_absen->subjectsKimia();
-
 			switch ($pelajaran) {
 				case 'Biologi':
-					if ($xBiologi->num_rows() == 1) {
-						$this->message();
-						redirect('absen');
-					} else {
-						$this->Action_absen->keterangan_absen();
-						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil absen</div>');
-						redirect('absen');
-					}
+					$this->getSubjectBiologi();
 					break;
 				case 'Fisika':
-					if ($xFisika->num_rows() == 1) {
-						$this->message();
-						redirect('absen');
-					} else {
-						$this->Action_absen->keterangan_absen();
-						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil absen</div>');
-						redirect('absen');
-					}
+					$this->getSubjectFisika();
 					break;
 				case 'Kimia':
-					if ($xKimia->num_rows() == 1) {
-						$this->message();
-						redirect('absen');
-					} else {
-						$this->Action_absen->keterangan_absen();
-						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil absen</div>');
-						redirect('absen');
-					}
+					$this->getSubjectKimia();
+					break;
+				case 'Ekonomi':
+					$this->getSubjectEkonomi();
+					break;
+				case 'Geografi':
+					$this->getSubjectGeografi();
+					break;
+				case 'Sosiologi':
+					$this->getSubjectSosiologi();
 					break;
 			}
 		}

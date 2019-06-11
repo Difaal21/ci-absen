@@ -134,30 +134,4 @@ class Action_ipa extends CI_model
         $db = $this->db->insert(' absen_siswa ', $data);
         return $db;
     }
-
-    /* ============= Kondisi Agar Siswa Tidak Dapat Login 2 kali dalam sehari ============================ */
-    public function dateLogicBiologi()
-    {
-        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
-        $date = date('d F Y');
-        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id = '4'");
-        return $query;
-    }
-
-    public function dateLogicFisika()
-    {
-        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
-        $date = date('d F Y');
-        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id='7'");
-        return $query;
-    }
-
-    public function dateLogicKimia()
-    {
-        $user   = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
-        $date = date('d F Y');
-        $query = $this->db->query("SELECT * FROM absen_siswa WHERE username = '$user[username]'  AND tanggal =  '$date' AND subjects_id='10' ");
-        return $query;
-    }
-    /*============================================================================================*/
 }

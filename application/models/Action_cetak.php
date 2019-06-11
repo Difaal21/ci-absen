@@ -19,10 +19,10 @@ class Action_cetak extends CI_model
             JOIN tabel_jurusan tj ON tj.jurusan_id = sg.jurusan_id
             JOIN user u ON u.username = asis.username
             JOIN sub_student ss ON ss.student_id = u.id
-            JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
+			JOIN tabel_siswa ts ON ts.siswa_id = ss.student_id
+			JOIN sub_teacher st ON st.subjects_id = cs.subjects_id
             JOIN tabel_konfirmasi tkon ON tkon.konfirmasi_id = asis.konfirmasi_id
-            JOIN tabel_guru tg ON tg.guru_id = cs.guru_id
-            JOIN sub_teacher st ON st.teacher_id = tg.guru_id
+            JOIN tabel_guru tg ON tg.guru_id = st.teacher_id
             WHERE u.username = $user[username]
             ORDER BY asis.tanggal ASC
             ";

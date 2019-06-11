@@ -42,10 +42,10 @@
 								<td><?= $s['alamat']; ?></td>
 								<td><?= date('d F Y', $s['date_created']); ?></td>
 								<td>
-									<a class="badge badge-warning fas fa-edit" href="#">
+									<a class="badge badge-warning fas fa-edit" href="<?= base_url(); ?>admin/updateSiswa/<?= $s['siswa_id']; ?>">
 										Edit
 									</a>
-									<a class="badge badge-danger far fa-times-circle " href="<?= base_url() ?>admin/deleteSiswa/<?= $s['siswa_id'] ?>">
+									<a class="badge badge-danger far fa-times-circle" href="<?= base_url(); ?>admin/deleteSiswa/<?= $s['siswa_id']; ?>">
 										Delete
 									</a>
 								</td>

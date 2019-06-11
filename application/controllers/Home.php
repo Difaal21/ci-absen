@@ -59,11 +59,11 @@ class Home extends CI_Controller
 					];
 				$this->session->set_userdata($data);
 				if ($user['role_id'] == 1) {
-					redirect('home/dashboard');
+					redirect('admin/dashboard');
 				} elseif ($user['role_id'] == 2) {
-					redirect('home/dashboard_guru');
+					redirect('guru/dashboard');
 				} else {
-					redirect('home/dashboard_siswa');
+					redirect('siswa/dashboard');
 				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Your password is uncorrect!</div>');
@@ -79,42 +79,5 @@ class Home extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('home');
-	}
-
-	public function dashboard()
-	{
-		$data['title'] 	= 'Beranda';
-		$data['user']	= $this->Action_model->queryAkun();
-		$data['menu'] 	= $this->db->get('user_menu')->result_array();
-		$this->load->view('template/header.php', $data);
-		$this->load->view('template/sidebar.php', $data);
-		$this->load->view('template/topbar.php', $data);
-		$this->load->view('home/dashboard.php', $data);
-		$this->load->view('template/footer.php');
-	}
-	public function dashboard_guru()
-	{
-		$data['title'] 	= 'Beranda';
-		$data['user']	= $this->Action_model->queryAkun();
-		$data['menu'] 	= $this->db->get('user_menu')->result_array();
-		$data['info']   = $this->Action_guru->dashboard_guru();
-		$this->load->view('template/header.php', $data);
-		$this->load->view('template/sidebar.php', $data);
-		$this->load->view('template/topbar.php', $data);
-		$this->load->view('home/dashboard_guru.php', $data);
-		$this->load->view('template/footer.php');
-	}
-
-	public function dashboard_siswa()
-	{
-		$data['title'] 	= 'Beranda';
-		$data['user']	= $this->Action_model->queryAkun();
-		$data['menu'] 	= $this->db->get('user_menu')->result_array();
-		$data['info']	= $this->Action_siswa->dashboard_siswa();
-		$this->load->view('template/header.php', $data);
-		$this->load->view('template/sidebar.php', $data);
-		$this->load->view('template/topbar.php', $data);
-		$this->load->view('home/dashboard_siswa.php', $data);
-		$this->load->view('template/footer.php');
 	}
 }

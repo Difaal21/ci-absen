@@ -23,6 +23,19 @@ class Siswa extends CI_Controller
         $this->load->view('template/footer.php');
     }
 
+    public function dashboard()
+    {
+        $data['title']     = 'Beranda';
+        $data['user']    = $this->Action_model->queryAkun();
+        $data['menu']     = $this->db->get('user_menu')->result_array();
+        $data['info']    = $this->Action_siswa->dashboard_siswa();
+        $this->load->view('template/header.php', $data);
+        $this->load->view('template/sidebar.php', $data);
+        $this->load->view('template/topbar.php', $data);
+        $this->load->view('siswa/dashboard.php', $data);
+        $this->load->view('template/footer.php');
+    }
+
     public function tambah()
     {
         $this->form_validation->set_rules(
